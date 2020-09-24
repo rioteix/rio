@@ -41,15 +41,25 @@
         <img src="image2.jpg" alt="">
     </div>
 
+    <div class="image-container" onclick="playSound(sound3)">
+        <img src="image3.jpg" alt="">
+    </div>
+
+    <div class="image-container" onclick="playSound(sound4)">
+        <img src="image4.jpg" alt="">
+    </div>
+
+
 
 </div>
 
 
 <script>
 
-const sound1 = new Howl({ src: 'sound1.mp3', volume: 0.05, loop: false});
-const sound2 = new Howl({ src: 'sound2.mp3', volume: 1.0, loop: false});
-
+const sound1 = new Howl({ src: 'Sound1.mp3', volume: 1.0, loop: false});
+const sound2 = new Howl({ src: 'Sound2.mp3', volume: 1.0, loop: false});
+const sound3 = new Howl({ src: 'Sound3.mp3', volume: 1.0, loop: false});
+const sound4 = new Howl({ src: 'Sound4.mp3', volume: 1.0, loop: false});
 
 const playSound = (sound) => {
         sound.play();
