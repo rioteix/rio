@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Yellow Ribbon: A HTML Story</title>
 <BODY style="background-color: yellow;"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
 
+    <h1>Yellow Ribbon: A HTML Story</h1>
+
+   
 
     <style>
 
         .flex-container {
             display: flex;
             padding: 100px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 100px;
+            color: purple;
+            margin-left: 200px;
+
         }
 
         .image-container {
             width: 300px;
             height: 300px;
-            margin-left: 40px;
+            filter: brightness(0.6);
+        }
+
+        .image-container:hover {
+            border-radius: 10px solid black;
+            cursor: pointer;
+            transform: scale(1.1);
+           
+        }
+
+        .active {
+            filter: brightness(1.0);
+            transform: scale(1.1);
         }
 
         img {
-            width: 100%;
-            height: 100%
+            width: 95%;
+            height: 85%
         }
     </style>
 
@@ -33,20 +57,36 @@
 <body>
 
 <div class="flex-container" ">
-    <div class="image-container" onclick="playSound(sound1)">
+    <div class="image-container" ">
         <img src="image1.jpg" alt="">
     </div>
 
-    <div class="image-container" onclick="playSound(sound2)">
+    <div class="image-container">
         <img src="image2.jpg" alt="">
     </div>
 
-    <div class="image-container" onclick="playSound(sound3)">
+    <div class="image-container">
         <img src="image3.jpg" alt="">
     </div>
 
-    <div class="image-container" onclick="playSound(sound4)">
+    <div class="image-container">
         <img src="image4.jpg" alt="">
+    </div>
+
+    <div class="image-container">
+        <img src="image5.jpg" alt="">
+    </div>
+
+    <div class="image-container">
+        <img src="image6.jpg" alt="">
+    </div>
+
+    <div class="image-container">
+        <img src="image7.jpg" alt="">
+    </div>
+
+    <div class="image-container">
+        <img src="image8.jpg" alt="">
     </div>
 
 
@@ -60,10 +100,39 @@ const sound1 = new Howl({ src: 'Sound1.mp3', volume: 1.0, loop: false});
 const sound2 = new Howl({ src: 'Sound2.mp3', volume: 1.0, loop: false});
 const sound3 = new Howl({ src: 'Sound3.mp3', volume: 1.0, loop: false});
 const sound4 = new Howl({ src: 'Sound4.mp3', volume: 1.0, loop: false});
+const sound5 = new Howl({ src: 'Sound5.mp3', volume: 1.0, loop: false});
+const sound6 = new Howl({ src: 'Sound6.mp3', volume: 1.0, loop: false});
+const sound7 = new Howl({ src: 'Sound7.mp3', volume: 1.0, loop: false});
+const sound8 = new Howl({ src: 'Sound8.mp3', volume: 1.0, loop: false});
 
-const playSound = (sound) => {
+const sounds = [sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8];
+
+const divs = document.querySelectorAll('.image-container');
+console.log(divs);
+divs.forEach( (div, i) => {
+        div.addEventListener('click', () => playSound(sounds[i], i));
+
+})
+
+const playSound = (sound, i) => {
+
+
+    divs.forEach(div=>div.classList.remove('active'));    
+
+    sounds.forEach(item => {
+        if(item.playing()){
+            item.stop();
+
+        }
+    })
+
+    divs[i].classList.add('active');
+
+    if(!sound.playing()){
         sound.play();
-};
+    }
+        
+}
 
 // playSound(sound1);
 // // sound1.play();
